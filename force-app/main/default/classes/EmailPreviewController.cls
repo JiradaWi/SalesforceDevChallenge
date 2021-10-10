@@ -11,7 +11,7 @@ public with sharing class EmailPreviewController {
             result.put('STATUS', 'Fail');
             result.put('Message', 'No campaign ID found!');
         }else{
-            List<Campaign> camList = [SELECT Id, Name FROM Campaign WHERE Id = :campaignId];
+            List<Campaign> camList = [SELECT Id, Name, Owner.Name FROM Campaign WHERE Id = :campaignId];
             if(camList != null && camList.size() > 0){
                 result.put('STATUS', 'Success');
                 result.put('Campaign',camList[0]);

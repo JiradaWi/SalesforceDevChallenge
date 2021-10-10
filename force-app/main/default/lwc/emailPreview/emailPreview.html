@@ -16,15 +16,18 @@
                         </a>
                     </h2>
                 </div>
-                <!-- <div class="slds-no-flex">
-                    <button class="slds-button slds-button_neutral">New</button>
-                </div> -->
+
             </header>
         </div>
         <div class="slds-card__body slds-card__body_inner">
             <div class="slds-grid slds-wrap">
                 <div class="slds-col slds-size_6-of-12">
-                    Field List
+                    <lightning-checkbox-group name="FieldList"
+                        label="FieldList"
+                        options={options}
+                        value={value}
+                        onchange={handleChange}>
+                    </lightning-checkbox-group>
                 </div>
                 <div class="slds-col slds-size_6-of-12">
                     <div class="slds-form-element">

@@ -9,6 +9,8 @@ export default class EmailPreview extends NavigationMixin(LightningElement) {
 
     @track campaignId;
     @track campaignName;
+    @track options;
+    @track value = [];
 
     @wire(CurrentPageReference)
     getStateParameters(currentPageReference) {
@@ -33,12 +35,21 @@ export default class EmailPreview extends NavigationMixin(LightningElement) {
             getCampaign({ campaignId: this.campaignId})
                 .then(result => {
                     this.campaignName = result.Campaign.Name;
+                    this.value = [this.campaignName];
+                    this.generateCheckbox(result);
                 }
                 ).catch(error => {
                     console.log(JSON.stringify(error));
                     this.showToast('Campaign ID Incorrect!', 'Please navigate to this page using campaign record page.', 'error');
                 })
         }
+    }
+
+    generateCheckbox(campaign){
+        this.options = [
+            {label: 'Name', value: campaign.Name},
+            {label: 'Owner', value: campaign.Owner.Name}
+        ];
     }
 
     showToast(title, message, variant) {
